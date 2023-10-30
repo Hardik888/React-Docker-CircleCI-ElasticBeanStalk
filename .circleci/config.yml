@@ -2,7 +2,7 @@ version: 2.1
 executors:
   docker-executor:
     docker:
-      - image: circleci/node:14
+      - image: cimg/node:21.1.0
 
 jobs:
   build:
@@ -13,10 +13,11 @@ jobs:
           version: 20.10.11
       - run:
           name: Switch to Dockerfile Directory
-          command: cd /path/to/your/dockerfile/directory
+          command: cd ..
       - run:
           name: Build and Test
           command: |
             docker build -t hardik89990/docker-react -f Dockerfile.dev .
             docker run hardik89990/docker-react npm run test -- --coverage
+
 
