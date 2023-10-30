@@ -13,7 +13,7 @@ jobs:
           version: 20.10.11
       - run:
           name: Switch to Dockerfile Directory
-          command: cd /path/to/your/dockerfile/directory
+          command: cd ..
       - run:
           name: Build and Test
           command: |
