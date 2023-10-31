@@ -31,7 +31,6 @@ workflows:
             application-name: Conatainer-app
             environment-name: Conatainer-app-env 
             app-dir: /home/haup/react-js/frontend 
-            image: cimg/base 
             platform-version: docker 
 
   
