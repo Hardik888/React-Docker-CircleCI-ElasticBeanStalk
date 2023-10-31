@@ -35,19 +35,9 @@ jobs:
             aws elasticbeanstalk create-application-version --application-name "Conatainer-app" --version-label $CIRCLE_SHA1 --source-bundle S3Bucket="elasticbeanstalk-ap-south-1-941863037293",S3Key="Conatainer-app/$CIRCLE_SHA1.zip"
             aws elasticbeanstalk update-environment --environment-name "Conatainer-app-env" --version-label $CIRCLE_SHA1
 
-workflows:
-  version: 2
-  build-and-deploy:
-    jobs:
-      - build:
-          filters:
-            branches:
-              only:
-                - master
-      - deploy:
-          requires:
+             requires:
             - build
-          filters:
+            filters:
             branches:
               only:
                 - master
