@@ -1,16 +1,29 @@
 version: 2.1
-
 executors:
   docker-executor:
     docker:
       - image: cimg/node:21.1.0
+  docker-executor-other:
+    docker:
+      - image: cimg/aws:2023.09
+
 
 jobs:
+ 
+  aws-cli-cred-setup:
+    executor: docker-executer-other
+    steps:
+      - aws-cli/setup:
+          aws-access-key-id: AWS_ACCESS_KEY
+          aws-secret-access-key: AWS_ACCESS_SECRET
+         
+
   build:
-    docker:
-      - image: cimg/node:21.1.0
+    executor: docker-executor
     steps:
       - checkout
+      - setup_remote_docker:
+          version: 20.10.11
       - run:
           name: Switch to Dockerfile Directory
           command: cd ..
@@ -20,24 +33,3 @@ jobs:
             docker build -t hardik89990/docker-react -f Dockerfile.dev .
             docker run -e CI=true hardik89990/docker-react npm run test
 
-  deploy:
-    docker:
-      - image: circleci/aws-elasticbeanstalk:2.4.0
-    steps:
-      - checkout
-      - setup_remote_docker:
-          version: 20.10.11
-      - run:
-          name: Deploy to Elastic Beanstalk
-          command: |
-            aws configure set aws_access_key_id $AWS_ACCESS_KEY
-            aws configure set aws_secret_access_key $AWS_SECRET_KEY
-            aws elasticbeanstalk create-application-version --application-name "Conatainer-app" --version-label $CIRCLE_SHA1 --source-bundle S3Bucket="elasticbeanstalk-ap-south-1-941863037293",S3Key="Conatainer-app/$CIRCLE_SHA1.zip"
-            aws elasticbeanstalk update-environment --environment-name "Conatainer-app-env" --version-label $CIRCLE_SHA1
-
-             requires:
-            - build
-            filters:
-            branches:
-              only:
-                - master
