@@ -5,17 +5,29 @@ executors:
   docker-executor:
     docker:
       - image: cimg/node:21.1.0
+  docker-executor-other:
+    docker:
+      - image: cimg/aws:2023.09
+
 
 
 
 jobs:
  
   aws-cli-cred-setup:
+<<<<<<< HEAD
     executor: aws-cli/default
     steps:
       - aws-cli/setup:
           aws_access_key_id : $AWS_ACCESS_KEY
           aws_secret_access_key: $AWS_ACCESS_SECRET
+=======
+    executor: docker-executer-other
+    steps:
+      - aws-cli/setup:
+          aws-access-key-id: AWS_ACCESS_KEY
+          aws-secret-access-key: AWS_ACCESS_SECRET
+>>>>>>> 51f2519 (added expose 80)
          
 
   build:
@@ -32,4 +44,7 @@ jobs:
           command: |
             docker build -t hardik89990/docker-react -f Dockerfile.dev .
             docker run -e CI=true hardik89990/docker-react npm run test
+<<<<<<< HEAD
 
+=======
+>>>>>>> 51f2519 (added expose 80)
