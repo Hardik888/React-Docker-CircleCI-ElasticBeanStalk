@@ -21,3 +21,14 @@ jobs:
             docker run -e CI=true hardik89990/docker-react npm run test
 
 
+deploy:
+  provider: elasticbeanstalk 
+  region:  "ap-south-1"
+  app : "Conatainer-app"
+  env : "Conatainer-app-env "
+  bucket_name: "elasticbeanstalk-ap-south-1-941863037293"
+  bucekt_path: "Conatainer-app"
+  on:
+    branch: master
+  AWS_ACCESS_KEY_ID: $ AWS_ACCESS_KEY
+  AWS_SECRET_ACCESS_KEY: $AWS_SECRET_KEY
