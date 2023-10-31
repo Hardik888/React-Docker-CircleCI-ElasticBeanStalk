@@ -1,35 +1,18 @@
 version: 2.1
 orbs:
   aws-elastic-beanstalk: circleci/aws-elastic-beanstalk@2.0.1
-executors:
-  docker-executor:
-    docker:
-      - image: cimg/node:21.1.0
+  aws-cli: circleci/aws-cli@4.1.1
 
 
 
 jobs:
- 
   aws-cli-cred-setup:
-    environment:
-      aws_access_key_id : $AWS_ACCESS_KEY
-      aws_secret_access_key: $AWS_ACCESS_SECRET
     executor: aws-cli/default
     steps:
-      - checkout
-      - run: |
-          aws_access_key_id : $AWS_ACCESS_KEY
-          aws_secret_access_key: $AWS_ACCESS_SECRET
-
-  - aws-elastic-beanstalk/deploy:
-            application-name: Container-app 
-            environment-name: Container-app-env 
-            platform-version: Docker running on 64bit Amazon Linux 2023/4.1.0
-         
-
-  build:
-    executor: docker-executor
-    steps:
+      - aws-cli/setup:
+          aws-access-key-id: AWS_ACCESS_KEY
+          aws-secret-access-key: AWS_ACCESS_SECRET
+          aws-region: AWS_REGION_NAME
       - checkout
       - setup_remote_docker:
           version: 20.10.11
@@ -41,5 +24,15 @@ jobs:
           command: |
             docker build -t hardik89990/docker-react -f Dockerfile.dev .
             docker run -e CI=true hardik89990/docker-react npm run test
+workflows:
+    example-workflow:
+      jobs:
+        - aws-elastic-beanstalk/deploy:
+            application-name: Conatainer-app
+            environment-name: Conatainer-app-env 
+            app-dir: /home/haup/react-js/frontend 
+            image: cimg/base 
+            platform-version: docker 
 
-
+  
+            
