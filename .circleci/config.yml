@@ -31,6 +31,6 @@ workflows:
             application-name: Docker-React
             environment-name: Docker-React-env
             app-dir: /home/haup/react-js/frontend 
-            image: hardik89990/app 
+            image: hardik89990/docker-react
             platform-version: arn:aws:elasticbeanstalk:ap-south-1::platform/Docker
             
