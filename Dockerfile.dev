@@ -3,10 +3,14 @@ FROM alpine
 WORKDIR '/app'
 
 RUN apk add --update nodejs npm
+
+RUN apk add --no-cache git
+
 COPY package.json .
 
 
 RUN npm install
+
 
 RUN apk update
 
