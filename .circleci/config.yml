@@ -24,13 +24,10 @@ jobs:
           command: |
             docker build -t hardik89990/docker-react -f Dockerfile.dev .
             docker run -e CI=true hardik89990/docker-react npm run test
-workflows:
-    example-workflow:
-      jobs:
-        - aws-elastic-beanstalk/deploy:
-            application-name: Docker-React
-            environment-name: Docker-React-env
-            app-dir: /home/haup/react-js/frontend 
-            image: hardik89990/docker-react
-            platform-version: arn:aws:elasticbeanstalk:ap-south-1::platform/Docker
+      - aws-elastic-beanstalk/deploy:
+          application-name: Docker-React
+          environment-name: Docker-React-env
+          app-dir: /home/haup/react-js/frontend 
+          image: hardik89990/docker-react
+          platform-version: arn:aws:elasticbeanstalk:ap-south-1::platform/Docker
             
