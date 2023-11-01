@@ -1,5 +1,11 @@
 FROM node:alpine
 
+RUN apk update
+
+RUN apk add --update py3-pip
+
+RUN pip install awsebcli
+
 WORKDIR '/app'
 
 COPY package.json .
