@@ -4,7 +4,7 @@ RUN apk update
 
 RUN apk add --update py3-pip
 
-RUN pip install awsebcli
+RUN pip install awsebcli --upgrade --user
 
 WORKDIR '/app'
 
