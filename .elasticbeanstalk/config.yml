@@ -1,6 +1,6 @@
 branch-defaults:
   master:
-    environment: Docker-React-env 
+    environment: $Docker-React-env 
 global:
   application_name: Docker-React
   default_platform: Docker running on 64bit Amazon Linux 2023/4.1.0
