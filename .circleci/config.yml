@@ -23,7 +23,7 @@ jobs:
       - run:
           name: Deploy to Elastic Beanstalk
           command: |
-            docker run -it -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY hardik89990/docker-react eb deploy $AWS_ENV --timeout 20
+            docker run -it -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -e AWS_REGION hardik89990/docker-react eb deploy $AWS_ENV --timeout 20
 
            
       
