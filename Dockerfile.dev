@@ -5,6 +5,7 @@ WORKDIR '/app'
 COPY package.json .
 
 RUN npm install
+RUN pip3 install awsebcli
 
 COPY . .
 

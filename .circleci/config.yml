@@ -19,7 +19,7 @@ jobs:
           command: |
             docker build -t hardik89990/docker-react -f Dockerfile.dev .
             docker run -e CI=true hardik89990/docker-react npm run test
-
+            pip3 install awsebcli
       - run:
           name: Deploying
-          command: sudo eb deploy Docker-React-env 
+          command:  eb deploy Docker-React-env 
