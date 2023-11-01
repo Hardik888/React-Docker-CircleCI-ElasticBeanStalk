@@ -6,7 +6,6 @@ executors:
 
 jobs:
   deploy:
-    working_directory: cd ..
     executor: docker-executor
     steps:
       - checkout
