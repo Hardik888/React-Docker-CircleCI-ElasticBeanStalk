@@ -1,16 +1,17 @@
-FROM node:alpine
+FROM alpine
+
+WORKDIR '/app'
+
+RUN apk add --update nodejs npm
+COPY package.json .
+
+
+RUN npm install
 
 RUN apk update
 
 RUN apk add --update py3-pip
-
-RUN pip install awsebcli --upgrade --user
-
-WORKDIR '/app'
-
-COPY package.json .
-
-RUN npm install
+RUN pip3 install awsebcli
 
 COPY . .
 

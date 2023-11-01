@@ -24,6 +24,7 @@ jobs:
             docker run -e CI=true hardik89990/docker-react npm run test
            
       - run:
+          working_directory: /app
           name: Deploying
           command: eb deploy Docker-React-env 
 
