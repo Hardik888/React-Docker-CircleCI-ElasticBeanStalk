@@ -1,8 +1,8 @@
 branch-defaults:
   master:
-    environment: Docker-React-env 
+    environment: ebs-deploy-env
 global:
-  application_name: Docker-React
+  application_name: ebs-deploy
   default_platform: Docker running on 64bit Amazon Linux 2023/4.1.0
   default_region: ap-south-1
   sc: git
