@@ -28,11 +28,9 @@ workflows:
     example-workflow:
       jobs:
         - aws-elastic-beanstalk/deploy:
-            application-name: Conatainer-app
-            environment-name: Conatainer-app-env 
+            application-name: Docker-React
+            environment-name: Docker-React-env
             app-dir: /home/haup/react-js/frontend 
-            image: cimg/aws:2023.09
-            platform-version: docker 
-
-  
+            image: hardik89990/app 
+            platform-version: arn:aws:elasticbeanstalk:ap-south-1::platform/Docker
             
